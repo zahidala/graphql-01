@@ -1,5 +1,4 @@
 import { gql, useQuery } from "@apollo/client";
-import { useAuth } from "@/contexts/AuthContext";
 
 interface UserInfo {
 	id: number;
@@ -17,8 +16,6 @@ interface UserInfoResponse {
 }
 
 export function useFetchUserInfo() {
-	const { user } = useAuth();
-
 	const GET_USER_INFO = gql`
 		query {
 			user {
@@ -32,13 +29,9 @@ export function useFetchUserInfo() {
 					amount
 				}
 			}
-			level: transaction(
-              limit: 1
-              order_by: { amount: desc }
-              where: { userId: { _eq: ${user?.id} }, type: { _eq: "level" } }
-      ) {
-         amount
-    	}
+			level: transaction(limit: 1, order_by: { amount: desc }, where: { type: { _eq: "level" } }) {
+				amount
+			}
 		}
 	`;
 
