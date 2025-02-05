@@ -35,7 +35,7 @@ export function useFetchUserInfo() {
 			level: transaction(
               limit: 1
               order_by: { amount: desc }
-              where: { userId: { _eq: ${user!.id} }, type: { _eq: "level" } }
+              where: { userId: { _eq: ${user?.id} }, type: { _eq: "level" } }
       ) {
          amount
     	}
