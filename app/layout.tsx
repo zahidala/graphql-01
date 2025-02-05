@@ -16,6 +16,7 @@ export default function RootLayout({
 					referrerPolicy="no-referrer"
 					rel="stylesheet"
 				/>
+				<link href="https://atugatran.github.io/FontAwesome6Pro/css/all.min.css" rel="stylesheet" />
 			</head>
 			<body>
 				<Providers>{children}</Providers>

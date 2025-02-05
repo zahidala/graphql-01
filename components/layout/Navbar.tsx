@@ -11,7 +11,7 @@ export const Navbar = () => {
 
 	return (
 		<div className="p-4 bg-gray-800 text-white flex justify-between items-center">
-			<h1>Reboot Stats Dashboard</h1>
+			<i className="fa-solid fa-chart-line fa-2xl"></i>
 
 			{isLoggedIn && !loading && (
 				<div className="flex items-center gap-4">
