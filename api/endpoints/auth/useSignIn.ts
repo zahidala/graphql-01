@@ -1,29 +1,29 @@
-import { useAxiosClient } from "@/api/hooks/useAxiosClient";
-import { useState } from "react";
-
+import { useClient } from "@/api/hooks/useClient";
+import { MutationOptions } from "@/api/types";
+import { useMutation } from "@tanstack/react-query";
 export interface SignInBody {
 	username: string;
 	password: string;
 }
 
-export const useSignIn = () => {
-	const client = useAxiosClient();
-	const [isLoading, setIsLoading] = useState(false);
+export const useSignIn = (options?: MutationOptions<void, SignInBody>) => {
+	const client = useClient();
+	const mutationKey = ["sign-in"];
 
-	const request = async (body: SignInBody) => {
-		setIsLoading(true);
-		try {
-			const authHeader = `Basic ${btoa(`${body?.username}:${body?.password}`)}`;
-			const response = await client.post("/auth/signin", null, {
-				headers: {
-					Authorization: authHeader,
-				},
-			});
-			return response;
-		} finally {
-			setIsLoading(false);
-		}
+	const mutationFn = async (body: SignInBody) => {
+		const authHeader = `Basic ${btoa(`${body?.username}:${body?.password}`)}`;
+		const response = await client.post("/auth/signin", null, {
+			headers: {
+				Authorization: authHeader,
+			},
+		});
+
+		return response?.data;
 	};
 
-	return { isLoading, request };
+	return useMutation({
+		mutationFn,
+		mutationKey,
+		...options,
+	});
 };

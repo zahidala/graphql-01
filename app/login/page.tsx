@@ -11,11 +11,10 @@ export default function Login() {
 		clearErrors,
 	} = useForm<SignInBody>();
 
-	const { request, isLoading } = useSignIn();
+	const { mutate, isPending } = useSignIn();
 
 	const onSubmit: SubmitHandler<SignInBody> = async data => {
-		const response = await request(data);
-		console.log(response);
+		mutate(data);
 	};
 
 	return (
@@ -33,7 +32,7 @@ export default function Login() {
 					/>
 
 					<button className="w-full mt-4 bg-white text-blue-500 p-2 rounded-md" type="submit">
-						{isLoading && <i className="fas fa-spinner fa-spin mr-2 text-blue-500" />}
+						{isPending && <i className="fas fa-spinner fa-spin mr-2 text-blue-500" />}
 						Login
 					</button>
 				</form>

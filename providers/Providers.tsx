@@ -1,12 +1,28 @@
 "use client";
 
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ThemeProvider } from "./ThemeProvider";
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
-	const client = new ApolloClient({
-		cache: new InMemoryCache(),
-		uri: "https://learn.reboot01.com/api/graphql-engine/v1/graphql",
-	});
+  const queryClient = new QueryClient();
+  queryClient.setDefaultOptions({
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  });
 
-	return <ApolloProvider client={client}>{children}</ApolloProvider>;
+  const apolloClient = new ApolloClient({
+    cache: new InMemoryCache(),
+    uri: "https://learn.reboot01.com/api/graphql-engine/v1/graphql",
+  });
+
+  return (
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <QueryClientProvider client={queryClient}>
+        <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
+  );
 };
