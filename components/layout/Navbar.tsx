@@ -1,26 +1,22 @@
 import { Button } from "@/components/ui/button";
+import { ThemeSwitcher } from "../ThemeSwitcher";
 import { useAuth } from "@/contexts/AuthContext";
-import { useFetchUserInfo } from "@/api/endpoints/dashboard/useFetchUserInfo";
 
 export const Navbar = () => {
 	const { logout, isLoggedIn } = useAuth();
-
-	const { data, loading } = useFetchUserInfo();
-
-	const user = data?.user[0];
 
 	return (
 		<div className="p-4 bg-gray-800 text-white flex justify-between items-center">
 			<i className="fa-solid fa-chart-line fa-2xl"></i>
 
-			{isLoggedIn && !loading && (
-				<div className="flex items-center gap-4">
-					<span>Welcome {user?.firstName}!</span>
+			<div className="flex items-center gap-4">
+				<ThemeSwitcher />
+				{isLoggedIn && (
 					<Button type="submit" onClick={() => logout()}>
 						Logout
 					</Button>
-				</div>
-			)}
+				)}
+			</div>
 		</div>
 	);
 };
