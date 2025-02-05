@@ -25,14 +25,12 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@404-software/eslint-config": "^1.0.23",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "8.1.0",
-    "eslint-plugin-react-hooks": "^4.2.1-alpha-4298ddbc5-20211023",
     "postcss": "^8",
-    "prettier": "2.4.1",
+    "eslint": "^8.18.0",
+    "prettier": "^2.7.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
