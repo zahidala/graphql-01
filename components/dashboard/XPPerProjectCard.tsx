@@ -46,7 +46,24 @@ export const XPPerProjectCard = () => {
 						config={chartConfig}
 					>
 						<PieChart>
-							<ChartTooltip content={<ChartTooltipContent hideLabel />} wrapperStyle={{ minWidth: 200 }} />
+							<ChartTooltip
+								content={
+									<ChartTooltipContent
+										formatter={(value, name) => (
+											<div className="flex gap-2 items-center">
+												<div
+													className="h-2 w-2 shrink-0 rounded-[2px]"
+													style={{ backgroundColor: `var(--color-${name})` }}
+												/>
+												<span className="text-gray-500">{name}</span>
+												<span className="font-medium">{value.toLocaleString()} B</span>
+											</div>
+										)}
+										hideLabel
+									/>
+								}
+								wrapperStyle={{ minWidth: 200 }}
+							/>
 							<Pie data={chartData} dataKey="xp" nameKey="project" />
 							<ChartLegend className="flex-wrap" content={<ChartLegendContent nameKey="project" />} />
 						</PieChart>
