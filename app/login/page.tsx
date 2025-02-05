@@ -2,14 +2,37 @@
 
 import { SignInBody, useSignIn } from "@/api/endpoints/auth/useSignIn";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const formSchema = z.object({
+  username: z.string().min(1, {
+    message: "Username is required.",
+  }),
+  password: z.string().min(1, {
+    message: "Password is required.",
+  }),
+});
 
 export default function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    clearErrors,
-  } = useForm<SignInBody>();
+  const form = useForm<SignInBody>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      username: "",
+      password: "",
+    },
+  });
 
   const { mutate, isPending } = useSignIn();
 
@@ -19,33 +42,58 @@ export default function Login() {
 
   return (
     <div className="h-screen flex justify-center items-center">
-      <div className="p-8 dark:bg-blue-500 bg-blue-400 rounded-md w-96 shadow-lg">
-        <h1 className="text-4xl text-white text-center">Login</h1>
+      <Card className="w-96">
+        <CardHeader>
+          <CardTitle>Login</CardTitle>
+        </CardHeader>
 
-        <form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
-          <input
-            className="w-full p-3 rounded-md"
-            placeholder="Username or Email"
-            {...register("username")}
-          />
-          <input
-            className="w-full p-3 mt-4 rounded-md"
-            placeholder="Password"
-            type="password"
-            {...register("password")}
-          />
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Username/Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter your username or email"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-          <button
-            className="w-full mt-4 bg-white text-blue-500 p-2 rounded-md"
-            type="submit"
-          >
-            {isPending && (
-              <i className="fas fa-spinner fa-spin mr-2 text-blue-500" />
-            )}
-            Login
-          </button>
-        </form>
-      </div>
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Enter your password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit">
+                {isPending && (
+                  <i className="fas fa-spinner fa-spin mr-2 text-blue-500" />
+                )}
+                Login
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
     </div>
   );
 }
