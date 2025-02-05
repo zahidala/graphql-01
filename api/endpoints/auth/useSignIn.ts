@@ -6,7 +6,9 @@ export interface SignInBody {
 	password: string;
 }
 
-export const useSignIn = (options?: MutationOptions<void, SignInBody>) => {
+type SignInResponse = string;
+
+export const useSignIn = (options?: MutationOptions<SignInResponse, SignInBody>) => {
 	const client = useClient();
 	const mutationKey = ["sign-in"];
 

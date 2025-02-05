@@ -1,0 +1,6 @@
+{
+  "extends": "@404-software/eslint-config",
+  "rules": {
+    "@typescript-eslint/no-unnecessary-type-assertion": "off"
+  }
+}
