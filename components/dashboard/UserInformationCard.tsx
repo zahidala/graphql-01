@@ -1,6 +1,7 @@
 import { capitalizeFirstLetter } from "@/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LoadingSpinner } from "../LoadingSpinner";
+import { TrendingUp } from "lucide-react";
 import { useFetchUserInfo } from "@/api/endpoints/dashboard/useFetchUserInfo";
 
 export const UserInformationCard = () => {
@@ -61,7 +62,7 @@ export const UserInformationCard = () => {
 
 							<div className="flex gap-2 items-center">
 								<div className="flex gap-2 items-center">
-									<i className="fa-solid fa-gamepad  text-blue-300"></i>
+									<TrendingUp className="text-blue-300" size={18} />
 									<span>Level:</span>
 								</div>
 
