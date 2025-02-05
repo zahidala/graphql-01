@@ -17,7 +17,7 @@ export default function RootLayout({
 					rel="stylesheet"
 				/>
 			</head>
-			<body>
+			<body className="p-4">
 				<Providers>{children}</Providers>
 			</body>
 		</html>
