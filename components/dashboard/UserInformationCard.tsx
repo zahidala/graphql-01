@@ -2,7 +2,7 @@ import { capitalizeFirstLetter } from "@/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { TrendingUp } from "lucide-react";
-import { useFetchUserInfo } from "@/api/endpoints/dashboard/useFetchUserInfo";
+import { useFetchUserInfo } from "@/api/endpoints/dashboard";
 
 export const UserInformationCard = () => {
 	const { data, loading } = useFetchUserInfo();
