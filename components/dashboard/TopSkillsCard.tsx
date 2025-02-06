@@ -24,7 +24,7 @@ export const TopSkillsCard = () => {
 	};
 
 	const chartData = filteredSkills.map(skill => {
-		const highestTransaction = data?.user[0].transactions
+		const highestTransaction = data?.transaction
 			.filter(transaction => transaction.type === skill)
 			.reduce((max, transaction) => (transaction.amount > max.amount ? transaction : max), { amount: 0 });
 		return { name: formatSkillName(skill), Skill: highestTransaction?.amount || 0 };
@@ -44,7 +44,7 @@ export const TopSkillsCard = () => {
 				<CardDescription>Here are your skills with the highest completion rate among all categories.</CardDescription>
 			</CardHeader>
 			<CardContent className="flex-1 pb-0">
-				{data?.user && !loading ? (
+				{data?.transaction && !loading ? (
 					<ChartContainer className="mx-auto aspect-square max-h-[250px] w-full" config={chartConfig}>
 						<RadarChart data={chartData}>
 							<ChartTooltip content={<ChartTooltipContent hideLabel />} cursor={false} />

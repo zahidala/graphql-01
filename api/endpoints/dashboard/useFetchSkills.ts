@@ -5,21 +5,15 @@ interface Skill {
 	type: string;
 }
 
-interface User {
-	transactions: Skill[];
-}
-
 interface SkillResponse {
-	user: User[];
+	transaction: Skill[];
 }
 
 const GET_SKILLS = gql`
 	query {
-		user {
-			transactions(where: { type: { _ilike: "%skill%" } }, order_by: { amount: desc }) {
-				type
-				amount
-			}
+		transaction(where: { type: { _regex: "skill" } }) {
+			amount
+			type
 		}
 	}
 `;
