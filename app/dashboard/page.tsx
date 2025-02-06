@@ -1,7 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { TopSkillsCard, UserInformationCard, XPPerProjectCard } from "@/components/dashboard";
+import { AuditInfoCard, TopSkillsCard, UserInformationCard, XPPerProjectCard } from "@/components/dashboard";
 
 export default function Dashboard() {
 	return (
@@ -12,18 +11,7 @@ export default function Dashboard() {
 
 			<TopSkillsCard />
 
-			<Card>
-				<CardHeader>
-					<CardTitle>Card Title</CardTitle>
-					<CardDescription>Card Description</CardDescription>
-				</CardHeader>
-				<CardContent>
-					<p>Card Content</p>
-				</CardContent>
-				<CardFooter>
-					<p>Card Footer</p>
-				</CardFooter>
-			</Card>
+			<AuditInfoCard />
 		</div>
 	);
 }

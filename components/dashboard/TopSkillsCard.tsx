@@ -45,7 +45,10 @@ export const TopSkillsCard = () => {
 			</CardHeader>
 			<CardContent className="flex-1 pb-0">
 				{data?.transaction && !loading ? (
-					<ChartContainer className="mx-auto aspect-square max-h-[250px] w-full" config={chartConfig}>
+					<ChartContainer
+						className="mx-auto aspect-square w-full max-h-[250px] sm:max-h-[300px] md:max-h-[400px] lg:max-h-[500px]"
+						config={chartConfig}
+					>
 						<RadarChart data={chartData}>
 							<ChartTooltip content={<ChartTooltipContent hideLabel />} cursor={false} />
 							<PolarGrid gridType="circle" />
