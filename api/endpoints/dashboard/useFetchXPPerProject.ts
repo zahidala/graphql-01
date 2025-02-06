@@ -33,7 +33,5 @@ const GET_XP_PER_PROJECT = gql`
 `;
 
 export function useFetchXPPerProject(options?: QueryHookOptions<XPPerProjectResponse>) {
-	return {
-		...useQuery<XPPerProjectResponse>(GET_XP_PER_PROJECT, options),
-	};
+	return useQuery<XPPerProjectResponse>(GET_XP_PER_PROJECT, options);
 }
