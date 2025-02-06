@@ -18,6 +18,7 @@ const GET_XP_PER_PROJECT = gql`
 					{ path: { _like: "/bahrain/bh-module%" } }
 					{ path: { _nlike: "/bahrain/bh-module/checkpoint%" } }
 					{ path: { _nlike: "/bahrain/bh-module/piscine%" } }
+					{ amount: { _gt: 0 } }
 				]
 			}
 			order_by: { createdAt: desc }

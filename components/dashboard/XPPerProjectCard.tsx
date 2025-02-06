@@ -17,13 +17,11 @@ export const XPPerProjectCard = () => {
 	const { data, loading } = useFetchXPPerProject();
 
 	const chartData =
-		data?.transaction
-			.filter(item => item.amount >= 0)
-			.map(item => ({
-				project: item.object.name,
-				xp: item.amount,
-				fill: `var(--color-${item.object.name.toLowerCase()})`,
-			})) || [];
+		data?.transaction.map(item => ({
+			project: item.object.name,
+			xp: item.amount,
+			fill: `var(--color-${item.object.name.toLowerCase()})`,
+		})) || [];
 
 	const chartConfig: ChartConfig = chartData.reduce<ChartConfig>((config, item) => {
 		config[item.project.toLowerCase()] = {
