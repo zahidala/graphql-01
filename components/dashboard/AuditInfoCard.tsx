@@ -58,7 +58,7 @@ export const AuditInfoCard = () => {
 					</CardContent>
 					<CardFooter className="flex justify-center items-center gap-4">
 						<span className="font-weight-bold text-4xl">Ratio</span>
-						<span className="text-4xl">{auditRatio}</span>
+						<span className="text-4xl text-[#f0bb00]">{auditRatio}</span>
 					</CardFooter>
 				</>
 			) : (
