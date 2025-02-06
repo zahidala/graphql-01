@@ -3,7 +3,7 @@
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
-import { TrendingUp } from "lucide-react";
+import { LoadingSpinner } from "../LoadingSpinner";
 import { useAuth } from "@/contexts/AuthContext";
 import { useFetchAuditInfo } from "@/api/endpoints/dashboard";
 
@@ -43,20 +43,29 @@ export const AuditInfoCard = () => {
 				<CardTitle>Audits Ratio</CardTitle>
 				<CardDescription> Done and received audits info including the ratio.</CardDescription>
 			</CardHeader>
-			<CardContent>
-				<ChartContainer config={chartConfig}>
-					<BarChart data={chartData} layout="vertical">
-						<XAxis type="number" hide />
-						<YAxis axisLine={false} dataKey="name" tickLine={false} type="category" />
-						<ChartTooltip content={<ChartTooltipContent />} cursor={false} />
-						<Bar barSize={50} dataKey="KB" layout="vertical" radius={5} />
-					</BarChart>
-				</ChartContainer>
-			</CardContent>
-			<CardFooter className="flex justify-center items-center gap-4">
-				<span className="font-weight-bold text-4xl">Ratio</span>
-				<span className="text-4xl">{auditRatio}</span>
-			</CardFooter>
+
+			{data?.user_by_pk && !loading ? (
+				<>
+					<CardContent>
+						<ChartContainer config={chartConfig}>
+							<BarChart data={chartData} layout="vertical">
+								<XAxis type="number" hide />
+								<YAxis axisLine={false} dataKey="name" tickLine={false} type="category" />
+								<ChartTooltip content={<ChartTooltipContent />} cursor={false} />
+								<Bar barSize={50} dataKey="KB" layout="vertical" radius={5} />
+							</BarChart>
+						</ChartContainer>
+					</CardContent>
+					<CardFooter className="flex justify-center items-center gap-4">
+						<span className="font-weight-bold text-4xl">Ratio</span>
+						<span className="text-4xl">{auditRatio}</span>
+					</CardFooter>
+				</>
+			) : (
+				<div className="flex flex-col min-h-[250px] justify-center">
+					<LoadingSpinner className="mx-auto" />
+				</div>
+			)}
 		</Card>
 	);
 };
