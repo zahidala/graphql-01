@@ -19,7 +19,7 @@ type TokenPayload = {
 };
 
 interface User {
-	id: string;
+	id: number;
 }
 
 interface Auth {

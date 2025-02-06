@@ -1,5 +1,9 @@
 import { gql, useQuery } from "@apollo/client";
 
+interface Params {
+	id: number;
+}
+
 interface UserInfo {
 	id: number;
 	login: string;
@@ -16,8 +20,8 @@ interface UserInfoResponse {
 }
 
 const GET_USER_INFO = gql`
-	query {
-		user {
+	query getUser($id: Int!) {
+		user(where: { id: { _eq: $id } }) {
 			id
 			login
 			firstName
@@ -34,8 +38,8 @@ const GET_USER_INFO = gql`
 	}
 `;
 
-export function useFetchUserInfo() {
+export function useFetchUserInfo(params: Params) {
 	return {
-		...useQuery<UserInfoResponse>(GET_USER_INFO),
+		...useQuery<UserInfoResponse>(GET_USER_INFO, { variables: { id: params.id } }),
 	};
 }

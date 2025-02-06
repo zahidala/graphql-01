@@ -2,10 +2,13 @@ import { capitalizeFirstLetter } from "@/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { TrendingUp } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 import { useFetchUserInfo } from "@/api/endpoints/dashboard";
 
 export const UserInformationCard = () => {
-	const { data, loading } = useFetchUserInfo();
+	const { user: userContext } = useAuth();
+
+	const { data, loading } = useFetchUserInfo({ id: userContext?.id || 0 });
 
 	const user = data?.user[0];
 
@@ -26,14 +29,14 @@ export const UserInformationCard = () => {
 						<div className="flex gap-4 items-center">
 							<i className="fas fa-user-circle text-5xl text-blue-300"></i>
 
-							<div className="flex flex-col">
+							<div className="flex flex-col flex-wrap">
 								<span className="text-xl">{fullName}</span>
 								<span className="text-gray-300">{user?.login}</span>
 							</div>
 						</div>
 
 						<div className="flex flex-col gap-4">
-							<div className="flex gap-2 items-center">
+							<div className="flex gap-2 items-center flex-wrap">
 								<div className="flex gap-2 items-center">
 									<i className="fa-solid fa-key text-blue-300"></i>
 									<span>ID:</span>
@@ -42,7 +45,7 @@ export const UserInformationCard = () => {
 								<span>{user?.id}</span>
 							</div>
 
-							<div className="flex gap-2 items-center">
+							<div className="flex gap-2 items-center flex-wrap">
 								<div className="flex gap-2 items-center">
 									<i className="fas fa-envelope text-blue-300"></i>
 									<span>Email:</span>
@@ -51,7 +54,7 @@ export const UserInformationCard = () => {
 								<span>{user?.email}</span>
 							</div>
 
-							<div className="flex gap-2 items-center">
+							<div className="flex gap-2 items-center flex-wrap">
 								<div className="flex gap-2 items-center">
 									<i className="fa-solid fa-location-dot text-blue-300"></i>
 									<span>Campus:</span>
