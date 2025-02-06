@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, QueryHookOptions, useQuery } from "@apollo/client";
 
 interface XPPerProject {
 	amount: number;
@@ -32,8 +32,8 @@ const GET_XP_PER_PROJECT = gql`
 	}
 `;
 
-export function useFetchXPPerProject() {
+export function useFetchXPPerProject(options?: QueryHookOptions<XPPerProjectResponse>) {
 	return {
-		...useQuery<XPPerProjectResponse>(GET_XP_PER_PROJECT),
+		...useQuery<XPPerProjectResponse>(GET_XP_PER_PROJECT, options),
 	};
 }

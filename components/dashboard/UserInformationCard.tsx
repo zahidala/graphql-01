@@ -8,7 +8,7 @@ import { useFetchUserInfo } from "@/api/endpoints/dashboard";
 export const UserInformationCard = () => {
 	const { user: userContext } = useAuth();
 
-	const { data, loading } = useFetchUserInfo({ id: userContext?.id || 0 });
+	const { data, loading } = useFetchUserInfo({ id: userContext?.id || 0 }, { skip: !userContext?.id });
 
 	const user = data?.user[0];
 

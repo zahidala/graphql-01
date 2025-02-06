@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, QueryHookOptions, useQuery } from "@apollo/client";
 
 interface Params {
 	id: number;
@@ -38,8 +38,8 @@ const GET_USER_INFO = gql`
 	}
 `;
 
-export function useFetchUserInfo(params: Params) {
+export function useFetchUserInfo(params: Params, options?: QueryHookOptions<UserInfoResponse>) {
 	return {
-		...useQuery<UserInfoResponse>(GET_USER_INFO, { variables: { id: params.id } }),
+		...useQuery<UserInfoResponse>(GET_USER_INFO, { variables: { id: params.id }, ...options }),
 	};
 }

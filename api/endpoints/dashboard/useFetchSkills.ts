@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, QueryHookOptions, useQuery } from "@apollo/client";
 
 interface Skill {
 	amount: number;
@@ -18,8 +18,6 @@ const GET_SKILLS = gql`
 	}
 `;
 
-export function useFetchSkills() {
-	return {
-		...useQuery<SkillResponse>(GET_SKILLS),
-	};
+export function useFetchSkills(options?: QueryHookOptions<SkillResponse>) {
+	return useQuery<SkillResponse>(GET_SKILLS, options);
 }
