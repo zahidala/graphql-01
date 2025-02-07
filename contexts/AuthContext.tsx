@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 			const payload = jwtDecode(token) as TokenPayload;
 			setAuth({
 				user: {
-					id: payload["https://hasura.io/jwt/claims"]["x-hasura-user-id"],
+					id: +payload["https://hasura.io/jwt/claims"]["x-hasura-user-id"],
 				},
 				token,
 			});
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		const payload = jwtDecode(token) as TokenPayload;
 		setAuth({
 			user: {
-				id: payload["https://hasura.io/jwt/claims"]["x-hasura-user-id"],
+				id: +payload["https://hasura.io/jwt/claims"]["x-hasura-user-id"],
 			},
 			token,
 		});
