@@ -43,7 +43,7 @@ export const TopSkillsCard = () => {
 				<CardTitle>Top Skills</CardTitle>
 				<CardDescription>Here are your skills with the highest completion rate among all categories.</CardDescription>
 			</CardHeader>
-			<CardContent className="flex-1 pb-0">
+			<CardContent className="flex-1">
 				{data?.transaction && !loading ? (
 					<ChartContainer
 						className="mx-auto aspect-square w-full max-h-[250px] sm:max-h-[300px] md:max-h-[400px] lg:max-h-[500px]"
