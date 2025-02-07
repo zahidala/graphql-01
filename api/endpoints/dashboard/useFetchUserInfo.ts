@@ -15,13 +15,13 @@ interface UserInfo {
 }
 
 interface UserInfoResponse {
-	user: UserInfo[];
+	user_by_pk: UserInfo;
 	level: Array<{ amount: number }>;
 }
 
 const GET_USER_INFO = gql`
-	query getUser($id: Int!) {
-		user(where: { id: { _eq: $id } }) {
+	query getUserInfo($id: Int!) {
+		user_by_pk(id: $id) {
 			id
 			login
 			firstName

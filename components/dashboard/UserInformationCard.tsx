@@ -10,7 +10,7 @@ export const UserInformationCard = () => {
 
 	const { data, loading } = useFetchUserInfo({ id: userContext?.id || 0 }, { skip: !userContext?.id });
 
-	const user = data?.user[0];
+	const user = data?.user_by_pk;
 
 	const fullName = `${user?.firstName} ${user?.lastName}`;
 
