@@ -4,14 +4,17 @@ import { AuditInfoCard, TopSkillsCard, UserInformationCard, XPPerProjectCard } f
 
 export default function Dashboard() {
 	return (
-		<div className="grid grid-cols-1 gap-4 pt-20 px-10 sm:grid-cols-2 lg:grid-cols-2 pb-20">
-			<UserInformationCard />
+		<>
+			<title>GraphQL 01 - Dashboard</title>
+			<div className="grid grid-cols-1 gap-4 pt-20 px-10 sm:grid-cols-2 lg:grid-cols-2 pb-20">
+				<UserInformationCard />
 
-			<XPPerProjectCard />
+				<XPPerProjectCard />
 
-			<TopSkillsCard />
+				<TopSkillsCard />
 
-			<AuditInfoCard />
-		</div>
+				<AuditInfoCard />
+			</div>
+		</>
 	);
 }
