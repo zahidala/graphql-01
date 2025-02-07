@@ -31,7 +31,7 @@ export const UserInformationCard = () => {
 
 							<div className="flex flex-col flex-wrap">
 								<span className="text-xl">{fullName}</span>
-								<span className="text-gray-300">{user?.login}</span>
+								<span className="text-gray-500 dark:text-gray-400">{user?.login}</span>
 							</div>
 						</div>
 
