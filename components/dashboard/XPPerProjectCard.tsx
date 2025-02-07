@@ -37,7 +37,7 @@ export const XPPerProjectCard = () => {
 				<CardTitle>XP Per Project</CardTitle>
 				<CardDescription>XP distribution for the last 5 projects</CardDescription>
 			</CardHeader>
-			<CardContent className="flex-1 pb-0">
+			<CardContent className="flex-1">
 				{data?.transaction && !loading ? (
 					<ChartContainer
 						className="mx-auto aspect-square max-h-[250px] pb-0 [&_.recharts-pie-label-text]:fill-foreground w-full"
