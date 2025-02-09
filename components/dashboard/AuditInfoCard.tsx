@@ -19,7 +19,7 @@ export const AuditInfoCard = () => {
 	const done = Math.round(totalUp / 1000);
 	const received = Math.round(totalDown / 1000);
 
-	const auditRatio = Math.round(audit?.auditRatio || 0).toFixed(1);
+	const auditRatio = (audit?.auditRatio || 0).toFixed(1);
 
 	const chartData = [
 		{ name: "Done", KB: done, fill: "var(--color-done)" },
