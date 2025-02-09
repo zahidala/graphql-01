@@ -1,5 +1,4 @@
 import { gql, QueryHookOptions, useQuery } from "@apollo/client";
-import { useAuth } from "@/contexts/AuthContext";
 
 interface Skill {
 	amount: number;
@@ -20,16 +19,5 @@ const GET_SKILLS = gql`
 `;
 
 export function useFetchSkills(options?: QueryHookOptions<SkillResponse>) {
-	const { logout } = useAuth();
-
-	return useQuery<SkillResponse>(GET_SKILLS, {
-		onError: error => {
-			if (error.message === "Could not verify JWT: JWTExpired") {
-				logout();
-			}
-
-			options?.onError?.(error);
-		},
-		...options,
-	});
+	return useQuery<SkillResponse>(GET_SKILLS, options);
 }

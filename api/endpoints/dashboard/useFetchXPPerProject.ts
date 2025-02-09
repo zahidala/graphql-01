@@ -1,5 +1,4 @@
 import { gql, QueryHookOptions, useQuery } from "@apollo/client";
-import { useAuth } from "@/contexts/AuthContext";
 
 interface XPPerProject {
 	amount: number;
@@ -34,16 +33,5 @@ const GET_XP_PER_PROJECT = gql`
 `;
 
 export function useFetchXPPerProject(options?: QueryHookOptions<XPPerProjectResponse>) {
-	const { logout } = useAuth();
-
-	return useQuery<XPPerProjectResponse>(GET_XP_PER_PROJECT, {
-		onError: error => {
-			if (error.message === "Could not verify JWT: JWTExpired") {
-				logout();
-			}
-
-			options?.onError?.(error);
-		},
-		...options,
-	});
+	return useQuery<XPPerProjectResponse>(GET_XP_PER_PROJECT, options);
 }
