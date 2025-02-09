@@ -41,7 +41,7 @@ export const AuditInfoCard = () => {
 		<Card>
 			<CardHeader className="items-center">
 				<CardTitle>Audits Ratio</CardTitle>
-				<CardDescription> Done and received audits info including the ratio.</CardDescription>
+				<CardDescription> Done and received audits info including the ratio. (KB)</CardDescription>
 			</CardHeader>
 
 			{data?.user_by_pk && !loading ? (
