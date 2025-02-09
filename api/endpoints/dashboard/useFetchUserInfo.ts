@@ -1,4 +1,5 @@
 import { gql, QueryHookOptions, useQuery } from "@apollo/client";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface Params {
 	id: number;
@@ -39,5 +40,17 @@ const GET_USER_INFO = gql`
 `;
 
 export function useFetchUserInfo(params: Params, options?: QueryHookOptions<UserInfoResponse>) {
-	return useQuery<UserInfoResponse>(GET_USER_INFO, { variables: { id: params.id }, ...options });
+	const { logout } = useAuth();
+
+	return useQuery<UserInfoResponse>(GET_USER_INFO, {
+		variables: { id: params.id },
+		onError: error => {
+			if (error.message === "Could not verify JWT: JWTExpired") {
+				logout();
+			}
+
+			options?.onError?.(error);
+		},
+		...options,
+	});
 }
