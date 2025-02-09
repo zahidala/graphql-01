@@ -16,7 +16,7 @@ export const UserInformationCard = () => {
 
 	const level = data?.level[0].amount || 0;
 
-	const totalXP = user?.xps.reduce((acc, curr) => acc + curr.amount, 0) || 0;
+	const totalXP = user?.xp.aggregate.sum.amount || 0;
 
 	return (
 		<Card className="p-3">

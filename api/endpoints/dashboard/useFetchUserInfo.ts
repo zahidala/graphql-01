@@ -11,7 +11,7 @@ interface UserInfo {
 	lastName: string;
 	email: string;
 	campus: string;
-	xps: Array<{ amount: number }>;
+	xp: { aggregate: { sum: { amount: number } } };
 }
 
 interface UserInfoResponse {
@@ -28,8 +28,12 @@ const GET_USER_INFO = gql`
 			lastName
 			email
 			campus
-			xps {
-				amount
+			xp: transactions_aggregate(where: { type: { _eq: "xp" } }) {
+				aggregate {
+					sum {
+						amount
+					}
+				}
 			}
 		}
 		level: transaction(limit: 1, order_by: { amount: desc }, where: { type: { _eq: "level" } }) {
