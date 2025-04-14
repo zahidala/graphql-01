@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { SignInBody, useSignIn } from "@/api/endpoints/auth/useSignIn";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAuth } from "@/contexts/AuthContext";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
@@ -31,7 +32,7 @@ export default function Login() {
 	});
 
 	const { toast } = useToast();
-	const { login } = useAuth();
+	const { login, isLoggedIn } = useAuth();
 
 	const router = useRouter();
 
@@ -65,6 +66,12 @@ export default function Login() {
 	const onSubmit: SubmitHandler<SignInBody> = async data => {
 		mutate(data);
 	};
+
+	useEffect(() => {
+		if (isLoggedIn) {
+			router.push("/");
+		}
+	}, [isLoggedIn]);
 
 	return (
 		<>
