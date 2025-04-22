@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter } from "@/utils";
+import { capitalizeFirstLetter, formatBytes } from "@/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { TrendingUp } from "lucide-react";
@@ -38,15 +38,6 @@ export const UserInformationCard = () => {
 						<div className="flex flex-col gap-4">
 							<div className="flex gap-2 items-center flex-wrap">
 								<div className="flex gap-2 items-center">
-									<i className="fa-solid fa-key text-sm sm:text-base md:text-lg text-blue-300"></i>
-									<span className="text-sm sm:text-base md:text-lg">ID:</span>
-								</div>
-
-								<span className="text-sm sm:text-base md:text-lg">{user?.id}</span>
-							</div>
-
-							<div className="flex gap-2 items-center flex-wrap">
-								<div className="flex gap-2 items-center">
 									<i className="fas fa-envelope text-sm sm:text-base md:text-lg text-blue-300"></i>
 									<span className="text-sm sm:text-base md:text-lg">Email:</span>
 								</div>
@@ -80,7 +71,7 @@ export const UserInformationCard = () => {
 									<span className="text-sm sm:text-base md:text-lg">XP:</span>
 								</div>
 
-								<span className="text-sm sm:text-base md:text-lg">{totalXP} Bytes</span>
+								<span className="text-sm sm:text-base md:text-lg">{formatBytes(totalXP)}</span>
 							</div>
 						</div>
 					</div>

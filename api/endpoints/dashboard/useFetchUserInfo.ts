@@ -28,7 +28,7 @@ const GET_USER_INFO = gql`
 			lastName
 			email
 			campus
-			xp: transactions_aggregate(where: { type: { _eq: "xp" } }) {
+			xp: transactions_aggregate(where: { type: { _eq: "xp" }, eventId: { _eq: 20 } }) {
 				aggregate {
 					sum {
 						amount

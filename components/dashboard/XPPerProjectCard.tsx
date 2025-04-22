@@ -9,6 +9,7 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart";
+import { formatBytes } from "@/utils";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { Pie, PieChart } from "recharts";
 import { useFetchXPPerProject } from "@/api/endpoints/dashboard";
@@ -54,7 +55,7 @@ export const XPPerProjectCard = () => {
 													style={{ backgroundColor: `var(--color-${name})` }}
 												/>
 												<span className="text-gray-500">{name}</span>
-												<span className="font-medium">{value.toLocaleString()} B</span>
+												<span className="font-medium">{formatBytes(+value)}</span>
 											</div>
 										)}
 										hideLabel
